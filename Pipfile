@@ -10,6 +10,8 @@ ariadne = "*"
 requests = "*"
 
 [dev-packages]
+pytest = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.9"
