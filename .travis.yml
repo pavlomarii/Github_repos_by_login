@@ -1,0 +1,18 @@
+language: python
+python:
+  - "3.9"
+
+before_install:
+  - pip install pycodestyle
+
+install:
+  - pip install pipenv
+  - pipenv install --dev
+  - pipenv install coveralls
+
+script:
+  - python -m pytest tests/
+  - coverage run --source="./" -m pytest
+  - pycodestyle ./ --ignore=E722,E501,E402
+
+after_success: coveralls
