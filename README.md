@@ -6,3 +6,5 @@ A simple web application that lets you know
 the GitHub username and its repositories by its name.
 
 Travis and Coveralls are integrated into the project.
+
+App are available on https://test-github-repos.herokuapp.com/

@@ -1,19 +1,29 @@
+# Main schema with only query.
 schema {
     query: Query
 }
 
+# Different fields of query. Available only user_repos.
 type Query {
     user_repos(login: String!): UserRepoResult!
 }
 
+# Type with user login, username and list of repositories.
 type UserRepo {
+    # Username.
     user: String
+    # Login, input & output.
     login: String
+    # List of repositories.
     repos: [String]
 }
 
+# Results of field user_repo. Contain success flag, results or errors.
 type UserRepoResult {
+    # Success flag.
     success: Boolean!
+    # List with errors.
     errors: [String]
+    # Result.
     user_repo: UserRepo
 }
