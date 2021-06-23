@@ -8,15 +8,55 @@
 
 </head>
 <body style="background: #DDDDDD; text-align: center">
-  <form onsubmit="return mySubmitFunction(event)">
-      <label style="align: center; font-size: 35px" for="login">Github Login:</label><br>
-      <input id="login" type="text" name="login" size="40" required><br>
-      <input type="submit" value="Submit">
-  </form>
-  <br><br>
-  <div>
-      <div id="name"></div>
-      <div id="repos"></div>
-  </div>
+<form onsubmit="return mySubmitFunction(event)">
+    <label style="align: center; font-size: 35px" for="login">Github Login:</label><br>
+    <input id="login" type="text" name="login" size="40" required><br>
+    <input type="submit" value="Submit">
+</form>
+<br><br>
+<div>
+    <div id="name"></div>
+    <div id="repos"></div>
+</div>
+<script type="text/JavaScript">
+    function mySubmitFunction(e) {
+          const nameElem = document.getElementById("name")
+          const reposElem = document.getElementById("repos")
+          e.preventDefault();
+          fetch('/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({query: `query fetch {
+                                            user_repos(login: "${document.getElementById("login").value}") {
+                                                success
+                                                errors
+                                                user_repo {
+                                                    user
+                                                    repos
+                                                }
+                                            }
+                                          }`  })
+          })
+          .then(r => r.json())
+          .then(data => {
+            var obj = data.data.user_repos;
+            if (obj.success){
+                nameElem.innerHTML = `<h3>Username: ${obj.user_repo.user}</h3>`;
+                reposElem.innerHTML = ``;
+                for (var key of obj.user_repo.repos) {
+                    reposElem.innerHTML += `<p>${key}</p>`;
+                }
+            }
+            else {
+              nameElem.innerHTML = `<h3>Error: ${obj.errors[0]}</h3>`;
+              reposElem.innerHTML = ``;
+            }
+          });
+          return false;
+      }
+</script>
 </body>
 </html>
