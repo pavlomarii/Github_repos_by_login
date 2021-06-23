@@ -3,4 +3,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/pavlomarii/Github_repos_by_login/badge.svg?branch=master)](https://coveralls.io/github/pavlomarii/Github_repos_by_login?branch=master)
 
 A simple web application that lets you know
-the Github username and its repositorіes by its name.
+the GitHub username and its repositories by its name.
+
+Travis and Coveralls are integrated into the project.

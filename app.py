@@ -1,7 +1,7 @@
 from ariadne import graphql_sync, make_executable_schema, ObjectType, gql, load_schema_from_path, \
     snake_case_fallback_resolvers
 from ariadne.constants import PLAYGROUND_HTML
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from queries import resolve_user_repos
 
@@ -16,7 +16,7 @@ cors = CORS(app, resources={r"/graphql": {"origins": "*"}})
 
 @app.route('/')
 def root():
-    return 'Hello World!', 200
+    return render_template('index.html'), 200
 
 
 @app.route("/graphql", methods=["GET"])
