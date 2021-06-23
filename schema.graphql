@@ -1,0 +1,19 @@
+schema {
+    query: Query
+}
+
+type Query {
+    user_repos(login: String!): UserRepoResult!
+}
+
+type UserRepo {
+    user: String
+    login: String
+    repos: [String]
+}
+
+type UserRepoResult {
+    success: Boolean!
+    errors: [String]
+    user_repo: UserRepo
+}
