@@ -7,9 +7,9 @@ the GitHub username and its repositories by its name.
 
 Travis and Coveralls are integrated into the project.
 
-App are available on https://test-github-repos.herokuapp.com/
+The application is available on the link: https://test-github-repos.herokuapp.com/
 
-In order to install the project on local machine, you need: 
+In order to install the project on the local machine, you need: 
 
 1. Clone the repository.
 2. Install Python and pip.
